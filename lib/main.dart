@@ -22,14 +22,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Random random = Random();
-  late int numberToBeGuessed = random.nextInt(100) + 1;
-  int? choice;
-  bool guessed = false;
-  String? error;
-  String buttonText = 'Ghiceste!';
-  String helpingText = '';
-  TextEditingController controller = TextEditingController();
+  final Random _random = Random();
+  late int _numberToBeGuessed = _random.nextInt(100) + 1;
+  int? _choice;
+  bool _guessed = false;
+  String? _error;
+  String _buttonText = 'Ghiceste!';
+  String _helpingText = '';
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,37 +62,40 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                if (!guessed)
+                if (!_guessed)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      helpingText,
+                      _helpingText,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 20, color: Colors.blueGrey),
+                      style:
+                          const TextStyle(fontSize: 20, color: Colors.blueGrey),
                     ),
                   ),
                 TextField(
-                  controller: controller,
-                  enabled: !guessed,
+                  controller: _controller,
+                  enabled: !_guessed,
                   keyboardType: TextInputType.number,
                   onChanged: (String value) {
                     setState(() {
                       if (int.tryParse(value) != null) {
-                        error = null;
-                        choice = int.parse(value);
+                        _error = null;
+                        _choice = int.parse(value);
                       } else {
-                        error = 'Number introduced is not valid';
-                        choice = null;
+                        _error = 'Number introduced is not valid';
+                        _choice = null;
                       }
                     });
                   },
-                  decoration: InputDecoration(hintText: 'Introduce your number here!', errorText: error),
+                  decoration: InputDecoration(
+                      hintText: 'Introduce your number here!',
+                      errorText: _error),
                 ),
                 ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        if (choice != null && guessed == false) {
-                          if (choice == numberToBeGuessed) {
+                        if (_choice != null && _guessed == false) {
+                          if (_choice == _numberToBeGuessed) {
                             showDialog(
                               context: context,
                               builder: (BuildContext ctx) => AlertDialog(
@@ -119,23 +122,23 @@ class _HomePageState extends State<HomePage> {
                                 ],
                               ),
                             );
-                            controller.clear();
-                            guessed = true;
-                            buttonText = 'Try again!';
-                          } else if (choice! < numberToBeGuessed) {
-                            helpingText = 'You Tried $choice. Try higher!';
+                            _controller.clear();
+                            _guessed = true;
+                            _buttonText = 'Try again!';
+                          } else if (_choice! < _numberToBeGuessed) {
+                            _helpingText = 'You Tried $_choice. Try higher!';
                           } else {
-                            helpingText = 'You Tried $choice. Try lower!';
+                            _helpingText = 'You Tried $_choice. Try lower!';
                           }
-                        } else if (guessed == true) {
-                          guessed = false;
-                          numberToBeGuessed = random.nextInt(100) + 1;
-                          buttonText = 'Guess!';
-                          helpingText = '';
+                        } else if (_guessed == true) {
+                          _guessed = false;
+                          _numberToBeGuessed = _random.nextInt(100) + 1;
+                          _buttonText = 'Guess!';
+                          _helpingText = '';
                         }
                       });
                     },
-                    child: Text(buttonText)),
+                    child: Text(_buttonText)),
               ],
             ),
           ),
