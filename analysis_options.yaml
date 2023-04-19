@@ -21,7 +21,7 @@ analyzer:
     strict-raw-types: true
   errors:
     # allow self-reference to deprecated members (we do this because otherwise we have
-    # to annotate every member in every test, assert, etc, when we deprecate something)
+    # to annotate every member in every test, assert, etc., when we deprecate something)
     deprecated_member_use_from_same_package: ignore
   exclude:
     - "bin/cache/**"
@@ -107,7 +107,6 @@ linter:
     - hash_and_equals
     - implementation_imports
     - implicit_call_tearoffs
-    - invalid_case_patterns
     - iterable_contains_unrelated_type
     # - join_return_with_assignment # not required by flutter style
     - leading_newlines_in_multiline_strings
@@ -132,7 +131,7 @@ linter:
     - null_closures
     # - omit_local_variable_types # opposite of always_specify_types
     # - one_member_abstracts # too many false positives
-    - only_throw_errors # this does get disabled in a few places where we have legacy code that uses strings et al
+    - only_throw_errors # this does get disabled in a few places where we have legacy code that uses strings et al.
     - overridden_fields
     - package_api_docs
     - package_names
@@ -197,7 +196,6 @@ linter:
     # - unawaited_futures # too many false positives, especially with the way AnimationController works
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
-    - unnecessary_breaks
     - unnecessary_const
     - unnecessary_constructor_name
     # - unnecessary_final # conflicts with prefer_final_locals
