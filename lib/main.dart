@@ -68,8 +68,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       _helpingText,
                       textAlign: TextAlign.center,
-                      style:
-                          const TextStyle(fontSize: 20, color: Colors.blueGrey),
+                      style: const TextStyle(fontSize: 20, color: Colors.blueGrey),
                     ),
                   ),
                 TextField(
@@ -87,9 +86,7 @@ class _HomePageState extends State<HomePage> {
                       }
                     });
                   },
-                  decoration: InputDecoration(
-                      hintText: 'Introduce your number here!',
-                      errorText: _error),
+                  decoration: InputDecoration(hintText: 'Introduce your number here!', errorText: _error),
                 ),
                 ElevatedButton(
                     onPressed: () {
